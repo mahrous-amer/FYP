@@ -1,0 +1,277 @@
+GRAPHICAL USER AUTHENTICATION SYSTEM
+
+ABSTRACT
+A Graphical User Authentication is a form of authentication that requires the
+recall and/or recognition and selection of an image or points in an image,
+inputted during the registration stage in a GUI. Authentication systems provide
+the security mechanism for protection of services against unwanted access to
+resources. A graphical based Authentication system is one promising alternative
+of textual passwords. The most common used computer authentication method today
+is alphanumeric passwords.This method has been shown to have significant
+drawbacks. Users tend to choose memorable passwords, those memorable passwords
+are easy for attackers to guess, but strong system-assigned passwords are
+difficult for users to remember. By implementing a graphical password,
+we can use the very basic human skill. Some experts suggest that images are
+more likely to be remembered than words, because our brains dual encode
+images, but encode words only once.[1] Today, the most secure form of
+authentication is bio-metrically based but the problem with bio-metrics
+is that they are very expensive to implement.
+
+
+CHAPTER ONE
+
+1.0 Glossary:
+i. Password: is a secret that is shared by the verifier and the user, they are
+simply secrets that are provided by the user upon request by a recipient and are
+often stored on a server in an encrypted form so that a penetration of the file
+system does not reveal password lists.
+
+ii. Password Hardening: Password hardening is any one of a variety of measures
+taken to make it more difficult for an intruder to circumvent the authentication
+process. Password hardening may take the form of multifactor authentication, by
+adding some component to the username/password combination or maybe policy-based.
+
+iii. Passphrase: A passphrase is a string of characters longer than the usual
+password (which is typically from four to 16 characters long) that is used in
+creating a digital signature or in an encryption or a decryption of a message.
+Passphrases are often up to 100 characters in length.
+
+iv. Shoulder Surfing: This can be said to be the process of an attacker
+capturing a user’s password by direct observation (such as looking over one’s
+shoulder) or by recording the user’s authentication session.
+
+v. Attacker: This can be anyone who tries to gain access to someone’s account
+without the knowledge of the user either with a good or a bad motive.
+
+vi. Tolerance value: It is the value which indicates the degree of closeness to
+the actual click point.
+
+vii. Tolerance region: The area around an original click point accepted as
+correct since it is unrealistic to expect the user to accurately target an
+exact pixel.
+
+viii. Success rate: It is the rate which gives the number of successful trails
+for a certain number of trials. The success rates are calculated as the number
+of trails completed without errors or restarts.
+
+ix. Keylogger: is either a software or hardware based attack. It results in the
+keyboard entries of users getting extracted from the system and forwarded to
+the miscreant.
+
+1.1 Background Of The Study:
+Computer security systems are very important to protect the services and
+information in a particular computer system; they also must consider the human
+factors such as ease of use and accessibility. Current secure systems suffer
+because they mostly ignore the importance of human factors in security [2].
+Traditionally, alphanumeric passwords are used for authentication but they are
+perceived to have usability and security predicaments. A password authentication
+system should foster strong and less predictable passwords while sustaining
+memorability and security. Graphical passwords use pictures instead of texts
+and are somewhat motivated by the fact that humans can retain pictures more
+easier than a string of characters. Graphical passwords were first described
+by Greg Blonder in 1996 and since then numerous researchers have introduced
+different graphical password authentication schemes, in Blonder’s description
+of the concept an image would appear on the screen, and the user would click
+on a few chosen regions of it. If the correct regions were clicked in,
+the user would be authenticated. An essential advantage of Graphical passwords
+is that they are easier to remember than textual passwords.
+The important advantage of Graphical Passwords is that they are easy to recall
+compared to alphanumeric passwords. Thus, graphical passwords provide a
+mechanism for offering more user-friendly passwords while increasing
+the level of security.
+
+1.2 Problem Statement:
+Graphical passwords are a whole new method of authentication. Authentication by
+alphanumeric texts are ought to be prone to numerous modes of attacks such as
+guessing, social engineering, spyware, dictionary attacks, and shoulder surfing.
+It can be difficult for a user to keep up with several passwords for several
+sites or systems since it is not recommended to use one password. The main
+dilemmas graphical passwords tend to solve is that of a user using a weak
+password so that they won’t forget it moreover, at times when users are
+encouraged to use strong passwords, they tend to use it for several of their
+accounts also, users might tend to keep their passwords in files where attackers
+can access them. Since it is easier for humans to evoke pictures than text,
+graphical passwords tend to enhance security at the same time makes it easier
+for the user to use.
+
+1.3 Aims and objectives:
+One of the major issues in this modern day is security. The means of
+authentication attempts to enhance security but the prevalent means of
+"alphanumeric passwords" today are identified to have significant disadvantages.
+Attackers now have diverse means of accessing a particular system hence, other
+means of authentication are presently becoming rampant. Biometric-based
+authentication is perceived to be among the most secure means of authentication
+nevertheless, biometric-based authentication is very expensive to use.
+Graphical password authentication is cheap, easy to use, offers more security
+(than text-based passwords), and also takes into consideration the user factor.
+The aim of this report is to evaluate existing implementations.
+
+1.4 Scope of the study:
+This paper centers on graphical password authentication and the various forms
+commonly used today. It also highlights the advantages graphical passwords have
+over text-based passwords and the forms of attack a user can be prone to while
+using graphical passwords. This paper does not delve deep into the traditional
+form of authentication (text-based) and biometric form of authentication.
+
+
+1.5 Justification Of Study:
+I selected this research topic due to my interest in finding a more secure
+and user directed alternative to text-based passwords.
+
+1.6 Limitations Of Study:
+The principal limitation of using a graphical password is that they are more
+vulnerable to shoulder surfing than conventional text-based passwords.
+Attackers can capture a password by directly observing or by recording the
+user's authentication session while inputting passwords in public. This is
+referred to as shoulder-surfing. Another limitation is that the login process
+is hindered when graphical passwords are used besides this can sometimes pester
+a user.
+
+CHAPTER TWO
+
+GRAPHICAL PASSWORD TECHNIQUES
+
+Recognition Based Graphical Techniques:
+In recognition-based techniques, the user is presented with a set of images,
+then they would be required to pass the authentication stage by recognizing and
+identifying the Images he or she selected during the registration.
+Recognition-based systems generally require the users to memorize a portfolio of
+images during password creation, and then to log in, must recognize their images
+from among decoys. Humans are naturally exceptional at recognizing images
+previously seen, even those viewed very briefly.
+
+  i.Story algorithm:
+Story Scheme was proposed in 2004, this scheme categorizes the available
+pictures into nine categories namely animals, cars, women, foods, children, men,
+objects, natures, and sports. Users have to select their passwords from the
+mixed pictures of nine categories in order to make a story easier to remember.
+
+  ii.Triangle algorithm:
+Sobrado and Briget introduced an algorithm to overcome the problem of shoulder
+surfing attacks named Triangle. This scheme randomly places a set of N objects
+(a few hundred or a few thousand) on the screen. Additionally, there is a subset
+of K pass objects previously chosen and memorized by the user. The system will
+select the placement of N objects randomly in the log-in phase. The system
+initially chooses a patch randomly covering half the screen, and then
+randomly again places the K password objects in that patch. In the log-in phase,
+the user must be able to find the location of three pass-objects and then click
+inside the invisible triangle that is possible to create those three objects.
+But, for each login this process will be repeated using a Different group of n
+objects. The disadvantage of this algorithm is that the log-in phase must use a
+minimum of 1000 images in order to resist shoulder surfing attack.
+As a result too many objects are displayed, making it harder for the users to
+pinpoint the pass-objects while too a few objects makes the password space small
+and hence become simpler to predict or hack.
+
+
+Recall Based Graphical Techniques:
+With recall-based techniques, a user is prompted to reproduce something that
+they created or selected earlier during the registration stage. Recall-based
+graphical authentication systems are occasionally referred to as draw-metric
+systems because users recall and propagate a secret drawing. In these systems,
+users typically draw their password either on a blank canvas or on a grid which
+arguably acts as a mild memory cue. The recall task is a difficult one since
+the retrieval is done without memory prompts or cues.
+
+Hybrid schemes:
+These may be described as the combination of two or more schemes, i.e the
+combination of recognition and recall-based techniques or the combination of
+alphanumeric passwords with graphical password schemes. In the process of an
+ATM machine transaction, the bank uses a hybrid system. It consolidates
+knowledge-based authentication methods with token-based authentication, the
+ATM card is the token (something you have) and the PIN required is
+knowledge-based.
+
+CHAPTER THREE
+
+Related Works:
+Paper_Title: A Secured PINEntry Scheme to Avert Attacks
+Publisher: Rajarajan Srinivasan
+Date published: March 2018
+Overview:
+In this paper, the researchers proposed and analyzed the design of a new PIN
+entry scheme to secure the PIN numbers against keylogging and shoulder surfing
+attacks. Two variants of the schemes were created; manual and auto dragging.
+The proposed system revolves around a 5 by 10 array filled with characters that
+move automatically or manually so the user can tap the spacebar when he wants to
+select a character to input for authentication. The user studies carried out on
+the implementations of the schemes have demonstrated their high usability and
+security. The proposed schemes are designed and tested on computer usage, they
+are yet to be tested for their usability on touch screen based mobile phones.
+
+Advantages:
++The proposed system was found to be friendly by the users
++This system was observed to be more resilient to traditional attack methods
+like shoulder surfing
+
+Disadvantages:
+-The proposed schemes are designed and tested on computer usage, they are yet to
+be tested for their usability on touch screen based mobile phones.
+-The proposed schemes use characters which does not make use of our natural gift
+of retaining shapes and images efficiently.
+
+Paper_Title: Efficient Shoulder Surfing Resistant PIN Authentication Scheme
+             Based on Localized Tactile Feedback
+Publisher: Wei-Chi Ku, Hao-Jun Xu
+Date published: 21-23 June 2019
+Overview:
+In this paper, the researchers proposed and analyzed the design of a new PIN
+entry scheme to secure the PIN numbers against key-logging and shoulder surfing
+attacks. They utilized the mechanism of local-ized tactile feedback (LTF) to
+improve the efficiency of shoulder-surfing attacks resistant PIN authenti-cation
+schemes. This resistant 8-digit PIN authentication scheme”VpointsPES” works as
+follows: The user has to register his/her email address as the account ID andan
+8-digit PIN, which consists of 8 decimal digits. Next,the user has to select one
+of the following three secu-rity+efficiency configurations: Low SA resistance &
+High Efficiency, Medium SA resistance & Medium Efficiency, or High SA resistance
+& Low Efficiency. The user then feels with 5 fingers on the screen the vibration
+pattern and combined with the visual input.The user feels the vibration pattern,
+memorizes the corresponding pass-letter, which is determined by the tactile hint
+,and then raises his/her fingers off the screen.
+
+
+Advantages:
++Measures the background noise to adjust feedback
++Very resilient against shoulder surfing attacks
+
+Disadvantages:
+-Limited to smart phones with local-ized tactile feedback (LTF).
+-Users with some disabilities may find it hard too impossible to use this scheme.
+-This scheme can be very tedious to learn and adapt too
+
+Paper_Title: A Graphical PIN Entry System with Shoulder Surfing Resistance
+Publisher: Muhammad Salman, Jian Wang, Yang Li
+Date published: 19-21 July 2019
+Overview:
+In this paper the researchers proposed a graphicalPIN based authentication
+system. This scheme uses digits{0,1, ...,9}, like most of the PIN based
+authentication systems. The length of the PIN code is 4 digits long. They have
+assumed that a one-time registration process of this authentica-tion scheme is
+performed in a secure location, where no possible attackers, as well as no video 
+recording device, is present.The proposed scheme consists of four rows with
+arrows on the left and right side of each row. There is one “ENTER” and one
+“RESET”. Each row has ten columns and each column will be populated with a
+random digit from{0,1,...,9}in every authentication session. You can move the
+digits in each row on the left and right side with the help of arrows
+corresponding to each row. “ENTER” button will be used to enter the PIN code
+for verification, once you have selected the required four digit PIN code.
+
+Advantages:
++Much simpler than previous proposed schemes
++Resilient to shoulder surfing attacks
+Disadvantages:
+-The proposed schemes use characters which does not make use of our natural gift of retaining shapes and images efficiently.
+-Can be time intensive
+-The length of PIN code allows only for 10^4 combinations
+
+
+References
+[1] Cheryl L. Grady, Anthony R. McIntosh, M. Natasha Rajah, and Fergus I. M.
+Craik PNAS March 3, 1998 95 (5) 2703-2708;https://doi.org/10.1073/pnas.95.5.2703
+
+[2] Rachna Dhamija and Adrian Perrig, “Deja Vu: A User Study. Using Images for
+Authentication” In Proceedings of the 9th USENIX Security Symposium, August 2000
+
+[3] Hong.D, Man.S, Hawes.B and Mathews.M (2003)." A shoulder-surfing
+resistant graphical password scheme". International conference on security and
+management. Las Vegas.
