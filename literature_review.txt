@@ -247,7 +247,7 @@ In this paper the researchers proposed a graphicalPIN based authentication
 system. This scheme uses digits{0,1, ...,9}, like most of the PIN based
 authentication systems. The length of the PIN code is 4 digits long. They have
 assumed that a one-time registration process of this authentica-tion scheme is
-performed in a secure location, where no possible attackers, as well as no video 
+performed in a secure location, where no possible attackers, as well as no video
 recording device, is present.The proposed scheme consists of four rows with
 arrows on the left and right side of each row. There is one “ENTER” and one
 “RESET”. Each row has ten columns and each column will be populated with a
@@ -260,7 +260,8 @@ Advantages:
 +Much simpler than previous proposed schemes
 +Resilient to shoulder surfing attacks
 Disadvantages:
--The proposed schemes use characters which does not make use of our natural gift of retaining shapes and images efficiently.
+-The proposed schemes use characters which does not make use of our natural gift
+ of retaining shapes and images efficiently.
 -Can be time intensive
 -The length of PIN code allows only for 10^4 combinations
 
