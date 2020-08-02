@@ -15,7 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-
+from gauth import views
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('home/',views.home, name='index'),
 ]
