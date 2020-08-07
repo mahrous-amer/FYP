@@ -185,7 +185,8 @@ knowledge-based.
 CHAPTER THREE
 
 Related Works:
-Paper_Title: A Secured PINEntry Scheme to Avert Attacks
+Paper_Title: DragPIN:A Secured PINEntry Scheme to Avert Attacks
+ A Secured PINEntry Scheme to Avert Attacks
 Publisher: Rajarajan Srinivasan
 Date published: March 2018
 Overview:
