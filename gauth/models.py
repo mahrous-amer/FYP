@@ -7,7 +7,7 @@ from django.db.models.signals import post_save
 
 class LoginInfo(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    birth_date = models.DateField(help_text='Required. Format: YYYY-MM-DD',null=True)
+    birth_date = models.DateField(help_text='choose your birth date',null=True)
     fails = models.PositiveSmallIntegerField(default=0)
     login_link = models.CharField(unique=True, blank=True, null=True, max_length=225)
     reset_link = models.CharField(unique=True, blank=True, null=True, max_length=225)

@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "d36bd997f93a0c4751040836b526c8ea6dc7f50654c26a9dc515389adc2c44a0"
+            "sha256": "e979f1ed3439ce4fcbe906d3b0068712074960c0cf3216e6d7c139a362ca50e5"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -26,11 +26,19 @@
         },
         "django": {
             "hashes": [
-                "sha256:31a5fbbea5fc71c99e288ec0b2f00302a0a92c44b13ede80b73a6a4d6d205582",
-                "sha256:5457fc953ec560c5521b41fad9e6734a4668b7ba205832191bbdff40ec61073c"
+                "sha256:1a63f5bb6ff4d7c42f62a519edc2adbb37f9b78068a5a862beff858b68e3dc8b",
+                "sha256:2d390268a13c655c97e0e2ede9d117007996db692c1bb93eabebd4fb7ea7012b"
             ],
             "index": "pypi",
-            "version": "==3.0.8"
+            "version": "==3.1"
+        },
+        "django-emoji-picker": {
+            "hashes": [
+                "sha256:7931537b93608c051a82f2510838235e08b8c829a289e55382ff3aa09809302c",
+                "sha256:b13a7b5ebb192b710502c2b72efc4dea02e048cc6da21286608a998b59c4c251"
+            ],
+            "index": "pypi",
+            "version": "==0.0.6"
         },
         "emoji": {
             "hashes": [

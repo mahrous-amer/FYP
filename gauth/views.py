@@ -12,6 +12,11 @@ def sign_up (request):
             user = form.save()
             user.refresh_from_db()  # load the LoginInfo instance created by the signal
             user.save()
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(username=username, password=password)
+            login(request, user)
+            return HttpResponse('A new user has been successfully registered!')
     else:
         form = SignUpForm()
     return render(request, 'sign_up.html', {'form': form})

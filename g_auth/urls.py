@@ -18,7 +18,7 @@ from django.urls import path
 from gauth import views
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('home/',views.home, name='index'),
+    path('',views.home, name='index'),
     path('sign_in/',views.sign_in, name='login'),
     path('sign_up/',views.sign_up, name='register'),
 
