@@ -1,2 +1,3 @@
 gauth/migrations
 static/admin
+g_auth/secrets.py
