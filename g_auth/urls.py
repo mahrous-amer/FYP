@@ -15,11 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from gauth import views
+from emojiauth import views
+from DragPIN import views as vs
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.home, name='index'),
     path('sign_in/',views.sign_in, name='login'),
-    path('sign_up/',views.sign_up, name='register'),
+    path('emoji/',views.sign_up, name='register'),
+    path('DragPIN/',vs.Drag_up, name='Drag_up'),
+    path('DragPIN_in/',vs.Drag_in, name='Drag_in'),
 
 ]

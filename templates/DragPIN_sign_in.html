@@ -1,0 +1,169 @@
+{% extends 'base.html' %}
+{% block content %}
+<!DOCTYPE html>
+<div class="col-sm-12">
+  <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist" style="/*! flex: 1; *//*!  */">
+    <li class="nav-item" style="width: 50%;">
+      <a class="nav-link active" id="pills-DragPIN-Manual-tab" data-toggle="pill" href="#pills-DragPIN-Manual" role="tab" aria-controls="pills-DragPIN-Manual" aria-selected="true">DragPIN-Manual</a>
+    </li>
+    <li class="nav-item" style="width: 50%;">
+      <a class="nav-link" id="pills-DragPIN-Auto-tab" data-toggle="pill" href="#pills-DragPIN-Auto" role="tab" aria-controls="pills-DragPIN-Auto" aria-selected="false">DragPIN-Auto</a>
+    </li>
+  </ul>
+
+  <div class="tab-content" id="pills-tabContent">
+<!-- Drag man -->
+    <div class="tab-pane fade show active" id="pills-DragPIN-Manual" role="tabpanel" aria-labelledby="pills-DragPIN-Manual-tab" >
+      <div class="table-responsive" id="drag-manual-container">
+          <table class="table table-borderless.table" id="Drag">
+          {% for array in results %}
+            <tr>
+              <td><button type="button" class="btn btn-dark btn-sm" id="left" value="◀️" >◀️</button></td>
+              {% for content in array %}
+              <td id={{content.id}}>
+                {% if content.value == "A" %}
+                  <span class="badge badge-info" style="width: 50px;height: 20px;" value="{{content.value}}"> {{content.value}}</span>
+                {% endif %}
+                {% if content.value == "B" %}
+                  <span class="badge badge-secondary" style="width: 50px;height: 20px;" value="{{content.value}}"> {{content.value}}</span>
+                {% endif %}
+                {% if content.value == "C" %}
+                  <span class="badge badge-success" style="width: 50px;height: 20px;" value="{{content.value}}"> {{content.value}}</span>
+                {% endif %}
+                {% if content.value == "D" %}
+                  <span class="badge badge-danger" style="width: 50px;height: 20px;" value="{{content.value}}"> {{content.value}}</span>
+                {% endif %}
+                {% if content.value == "E" %}
+                  <span class="badge badge-warning" style="width: 50px;height: 20px;" value="{{content.value}}"> {{content.value}}</span>
+                {% endif %}
+              </td>
+              {% endfor %}
+              <td><button type="button" class="btn btn-dark btn-sm" id="right" value="▶️">▶️</button></td>
+            </tr>
+          {% endfor %}
+        </table>
+        <form method="post" id="dragform">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <button type="submit" class="btn btn-primary btn-block" id="Dragpin-in" >Sign in</button>
+        </form>
+      </div>
+    </div>
+
+<!-- Drag auto -->
+
+    <div class="tab-pane fade" id="pills-DragPIN-Auto" role="tabpanel" aria-labelledby="pills-DragPIN-Auto-tab">
+      <div class="table-responsive" id="drag-auto-container">
+        <table class="table table-hover table-borderless.table" id="Dragauto">
+        {% for array in results %}
+          <tr class="tablerow thing">
+          {% for content in array %}
+          <td id="1{{content.id}}">
+            {% if content.value == "A" %}
+              <span class="badge badge-info" style="width: 50px;height: 20px;" value="{{content.value}}"> {{content.value}}</span>
+            {% endif %}
+            {% if content.value == "B" %}
+              <span class="badge badge-secondary" style="width: 50px;height: 20px;" value="{{content.value}}"> {{content.value}}</span>
+            {% endif %}
+            {% if content.value == "C" %}
+              <span class="badge badge-success" style="width: 50px;height: 20px;" value="{{content.value}}"> {{content.value}}</span>
+            {% endif %}
+            {% if content.value == "D" %}
+              <span class="badge badge-danger" style="width: 50px;height: 20px;" value="{{content.value}}"> {{content.value}}</span>
+            {% endif %}
+            {% if content.value == "E" %}
+              <span class="badge badge-warning" style="width: 50px;height: 20px;" value="{{content.value}}"> {{content.value}}</span>
+            {% endif %}
+          </td>
+          {% endfor %}
+          </tr>
+        {% endfor %}
+      </table>
+      <form method="post" id="dragautoform">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary btn-block" id="Dragpin-in" >Sign in</button>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $("button").on("click", function() {
+      if ($(this).attr("value") == '◀️') {
+        var fid = $(this).closest('tr').find('td:eq(1)').attr('id');
+        $shift2last=$("#"+fid).clone();
+        $("#"+fid).remove();
+        $(this).closest('tr').find('td:eq(9)').after($shift2last);
+      } else if ($(this).attr("value") == '▶️') {
+        var lid = $(this).closest('tr').find('td:eq(10)').attr('id');
+        $shift2first=$("#"+lid).clone();
+        $("#"+lid).remove();
+        $(this).closest('tr').find('td:eq(1)').before($shift2first);
+    	}
+    });
+    //DragPIN auto on hover shift
+    $(".thing").hover( function() {
+      $(this).addClass("activething");
+      $(this).removeClass("thing");
+      $(this).delay(800).each(function() {
+        var cid = $(this).find('td:eq(0)').attr('id');
+        $shiftlast = $("#" + cid).clone();
+        $("#" + cid).remove();
+        $(this).last().append($shiftlast);
+      });
+    }, function() {
+      $(this).stop();
+      $(this).removeClass("activething")
+      $(this).addClass("thing");
+    });
+    $('.hover').on('touchstart touchend', function(e) {
+      e.preventDefault();
+      $(this).toggleClass('hover_effect');
+    });
+
+    $('#dragform').submit(function(e){
+      // preventing from page reload and default actions
+      e.preventDefault();
+      // serialize the data for sending the form data.
+      var serializedData = $(this).serialize();
+      var spanArr = new Array();
+      $("#Drag").find("span").each(function() {
+        spanArr.push($(this).attr('value'));
+      });
+      // make POST ajax call
+      $.ajax({
+      url: '{% url "Drag_in" %}',
+      type: 'POST',
+      data: {'form': serializedData, 'result[]': spanArr,},
+      headers: { "X-CSRFToken": '{{csrf_token}}' },
+      success: function(response) {
+        $('#footer').html(response);
+            }
+      });
+    });
+    $('#dragautoform').submit(function(e){
+      // preventing from page reload and default actions
+      e.preventDefault();
+      // serialize the data for sending the form data.
+      var serializedData = $(this).serialize();
+      var spanArr = new Array();
+      $("#Dragauto").find("span").each(function() {
+        spanArr.push($(this).attr('value'));
+      });
+      // make POST ajax call
+      $.ajax({
+      url: '{% url "Drag_in" %}',
+      type: 'POST',
+      data: {'form': serializedData, 'result[]': spanArr,},
+      headers: { "X-CSRFToken": '{{csrf_token}}' },
+      success: function(response) {
+        $('#footer').html(response);
+            }
+      });
+    });
+});
+</script>
+{% endblock %}

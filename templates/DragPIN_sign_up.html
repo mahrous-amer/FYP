@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="col-sm-3">
+      <form method="post">
+      {% csrf_token %}
+      {% for field in form %}
+       <p>
+         {{ field.label_tag }}<br>
+         {{ field }}
+         {% if field.help_text %}
+           <small style="color: grey">{{ field.help_text }}</small>
+         {% endif %}
+         {% for error in field.errors %}
+           <p style="color: red">{{ error }}</p>
+         {% endfor %}
+       </p>
+      {% endfor %}
+            <button type="submit" class="btn btn-primary btn-block">Sign up</button>
+      </form>
+    </div>
+
+    <div class="col-sm-3">
+      <div class="toast border border-dark shadow-lg m-auto" data-autohide="false">
+        <div class="toast-header bg-dark">
+          <strong class="m-auto text-white"> Are you already registered ?</strong>
+          <button type="button" class="ml-2 mb-1 close" data-dismiss="toast">&times;</button>
+        </div>
+        <div class="toast-body bg-muted mx-auto">
+          <a class=" nav-link active text-muted">DragPIN is A secured PIN entry scheme to avert shoulder surfing attacks</a>
+          <a class=" nav-link active text-success" href="{% url "Drag_in" %}">Let's get you in by DragPIN! 🪓</a>
+          </div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function(){
+          $('.toast').toast('show');
+        });
+    </script>
+{% endblock %}

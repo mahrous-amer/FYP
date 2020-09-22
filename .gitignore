@@ -1,3 +1,4 @@
-gauth/migrations
+emojiauth/migrations
+DragPIN/migrations
 static/admin
 g_auth/secrets.py
