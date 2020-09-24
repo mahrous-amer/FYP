@@ -47,8 +47,8 @@ def Drag_in(request):
                 draguser = Profile.objects.get(DragID=DragId)
                 Profile_object = Profile._meta.get_field('PIN')
                 pin = getattr(draguser, Profile_object.attname)
-                Profile_object = Profile._meta.get_field('Identifier')
-                identifier = getattr(draguser, Profile_object.attname)
+                #Profile_object = Profile._meta.get_field('Identifier')
+                #identifier = getattr(draguser, Profile_object.attname)
                 #extras are not allways good
                 # count = 0
                 # for x in pin:

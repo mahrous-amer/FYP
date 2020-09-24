@@ -5,14 +5,14 @@ from .models import Profile
 class Profileform(forms.ModelForm):
     """A form for creating new DragPIN profiles. Includes all the required
     fields"""
-    Identifiers =  (("A", "A"),("B", "B"),("C", "C"),("D", "D"),("E", "E"))
+    #Identifiers =  (("A", "A"),("B", "B"),("C", "C"),("D", "D"),("E", "E"))
     DragID = forms.CharField()
     PIN    =  forms.CharField(widget=forms.PasswordInput)
     #extras are not allways good
     #Identifier = forms.ChoiceField(choices=Identifiers)
     class Meta:
         model = Profile
-        fields = ['DragID', 'PIN', 'Identifier']
+        fields = ['DragID', 'PIN']
 
 class Drag(forms.Form):
         DragID = forms.CharField()
