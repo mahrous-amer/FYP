@@ -8,14 +8,15 @@ class Profileform(forms.ModelForm):
     Identifiers =  (("A", "A"),("B", "B"),("C", "C"),("D", "D"),("E", "E"))
     DragID = forms.CharField()
     PIN    =  forms.CharField(widget=forms.PasswordInput)
-    Identifier = forms.ChoiceField(choices=Identifiers)
+    #extras are not allways good
+    #Identifier = forms.ChoiceField(choices=Identifiers)
     class Meta:
         model = Profile
         fields = ['DragID', 'PIN', 'Identifier']
 
 class Drag(forms.Form):
         DragID = forms.CharField()
-        
+
         def __init__(self, *args, **kwargs):
             super(Drag, self).__init__(*args, **kwargs)
             ## add a "form-control" class to each form input

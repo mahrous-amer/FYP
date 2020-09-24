@@ -49,19 +49,22 @@ def Drag_in(request):
                 pin = getattr(draguser, Profile_object.attname)
                 Profile_object = Profile._meta.get_field('Identifier')
                 identifier = getattr(draguser, Profile_object.attname)
-                count = 0
-                for x in pin:
-                    if count == 0:
-                        one = identifier is arr[int(x)]
-                    elif count == 1:
-                        two = identifier is arr[10+int(x)]
-                    elif count == 2:
-                        three = identifier is arr[10+10+int(x)]
-                    elif count == 3:
-                        four = identifier is arr[10+10+10+int(x)]
-                    count=count+1
-                print(one,two,three,four)
-                if one == True and two == True and three == True and four == True:
+                #extras are not allways good
+                # count = 0
+                # for x in pin:
+                #     if count == 0:
+                #         one = identifier is arr[int(x)]
+                #     elif count == 1:
+                #         two = identifier is arr[10+int(x)]
+                #     elif count == 2:
+                #         three = identifier is arr[10+10+int(x)]
+                #     elif count == 3:
+                #         four = identifier is arr[10+10+10+int(x)]
+                #     count=count+1
+                # print(one,two,three,four)
+                # print( arr[int(pin[0])], arr[int(pin[1])], arr[int(pin[2])], arr[int(pin[3])] )
+                # #if one == True and two == True and three == True and four == True:
+                if arr[int(pin[0])] == arr[10+int(pin[1])] == arr[20+int(pin[2])] == arr[30+int(pin[3])]:
                     return HttpResponse('User has been successfully signed in!')
                 else:
                     return HttpResponse('Dragid or DragPIN used is incorect')
