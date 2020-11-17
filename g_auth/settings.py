@@ -87,8 +87,7 @@ WSGI_APPLICATION = 'g_auth.wsgi.application'
 # }
 
 DATABASES = {
-    'default': dj_database_url.os.environ.get(
-        default=os.environ.get('DATABASE_URL')
+    'default': os.environ.get('DATABASE_URL')
     )
 }
 # Password validation
