@@ -88,7 +88,8 @@ WSGI_APPLICATION = 'g_auth.wsgi.application'
 # }
 
 DATABASES = {
-    'default': dj_database_url.config(os.environ['DATABASE_URL'], conn_max_age=1800)
+    'default': dj_database_url.config(os.environ['DATABASE_URL'], conn_max_age=1800),
+    'ENGINE': 'django.db.backends.postgresql',
 }
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
