@@ -9,6 +9,7 @@ verify_ssl = true
 django = "*"
 emoji = "*"
 django-emoji-picker = "*"
+whitenoise = "*"
 
 [requires]
 python_version = "3.8"
