@@ -17,6 +17,9 @@ from django.contrib import admin
 from django.urls import path
 from emojiauth import views
 from DragPIN import views as vs
+from django.conf import settings
+from django.conf.urls.static import static
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.home, name='index'),
@@ -25,4 +28,4 @@ urlpatterns = [
     path('DragPIN/',vs.Drag_up, name='Drag_up'),
     path('DragPIN_in/',vs.Drag_in, name='Drag_in'),
 
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
