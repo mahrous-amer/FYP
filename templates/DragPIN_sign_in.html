@@ -51,10 +51,9 @@
     </div>
 
 <!-- Drag auto -->
-
     <div class="tab-pane fade" id="pills-DragPIN-Auto" role="tabpanel" aria-labelledby="pills-DragPIN-Auto-tab">
       <div class="table-responsive" id="drag-auto-container">
-        <table class="table table-hover table-borderless.table" id="Dragauto">
+        <table class="table  table-borderless.table" id="Dragauto">
         {% for array in results %}
           <tr class="tablerow thing">
           {% for content in array %}
@@ -86,7 +85,9 @@
       </form>
       </div>
     </div>
+
   </div>
+
 </div>
 
 <script type="text/javascript">
@@ -103,25 +104,6 @@
         $("#"+lid).remove();
         $(this).closest('tr').find('td:eq(1)').before($shift2first);
     	}
-    });
-    //DragPIN auto on hover shift
-    $(".thing").hover( function() {
-      $(this).addClass("activething");
-      $(this).removeClass("thing");
-      $(this).delay(800).each(function() {
-        var cid = $(this).find('td:eq(0)').attr('id');
-        $shiftlast = $("#" + cid).clone();
-        $("#" + cid).remove();
-        $(this).last().append($shiftlast);
-      });
-    }, function() {
-      $(this).stop();
-      $(this).removeClass("activething")
-      $(this).addClass("thing");
-    });
-    $('.hover').on('touchstart touchend', function(e) {
-      e.preventDefault();
-      $(this).toggleClass('hover_effect');
     });
 
     $('#dragform').submit(function(e){
@@ -144,15 +126,56 @@
             }
       });
     });
+
+// DragPIN auto on spacebar
+
+let spanArr = new Array();
+document.getElementById("pills-DragPIN-Auto-tab").onclick = function() {
+            DragautoFunction()
+          };
+
+          let Row = 0;
+
+          function DragautoFunction() {
+            var interval = window.setInterval(function () {
+                // do your thing, do your thing
+
+                var cid =  $("#Dragauto").find('tr').eq(Row).find('td').eq(0).attr('id');
+                $shiftlast = $("#" + cid).clone();
+                $("#" + cid).remove();
+                $("#Dragauto").find('tr').eq(Row).find('td').last().after($shiftlast);
+
+            }, 1000);
+            document.onkeydown = function(event) {
+              if (event.keyCode == "13") {
+                console.log("Enter key pressed");
+                window.clearInterval(interval);
+                Row = Row + 1;
+              }
+              if (event.keyCode == "32") {
+                console.log("Space key pressed");
+                // store entry
+                var Arr = new Array();
+                $("#Dragauto").find('tr').eq(Row).find("span").each(function() {
+                  Arr.push($(this).attr('value'));
+                });
+                console.log(Arr);
+                spanArr = spanArr.concat(Arr);
+              }
+            };
+          };
+
+
     $('#dragautoform').submit(function(e){
       // preventing from page reload and default actions
       e.preventDefault();
       // serialize the data for sending the form data.
       var serializedData = $(this).serialize();
-      var spanArr = new Array();
-      $("#Dragauto").find("span").each(function() {
-        spanArr.push($(this).attr('value'));
-      });
+      console.log(spanArr);
+      // var spanArr = new Array();
+      // $("#Dragauto").find("span").each(function() {
+      //   spanArr.push($(this).attr('value'));
+      // });
       // make POST ajax call
       $.ajax({
       url: '{% url "Drag_in" %}',
@@ -161,7 +184,7 @@
       headers: { "X-CSRFToken": '{{csrf_token}}' },
       success: function(response) {
         $('#footer').html(response);
-            }
+      }
       });
     });
 });

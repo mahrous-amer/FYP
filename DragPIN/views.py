@@ -22,12 +22,15 @@ def Drag_in(request):
     charlist = ['A', 'B', 'C', 'D', 'E', 'A', 'B', 'C', 'D', 'E']
     random.shuffle(charlist)
     row1 = charlist
-    random.shuffle(row1)
-    row2 = row1
-    random.shuffle(row2)
-    row3 = row2
-    random.shuffle(row3)
-    row4 = row3
+    charlist = ['A', 'B', 'C', 'D', 'E', 'A', 'B', 'C', 'D', 'E']
+    random.shuffle(charlist)
+    row2 = charlist
+    charlist = ['A', 'B', 'C', 'D', 'E', 'A', 'B', 'C', 'D', 'E']
+    random.shuffle(charlist)
+    row3 = charlist
+    charlist = ['A', 'B', 'C', 'D', 'E', 'A', 'B', 'C', 'D', 'E']
+    random.shuffle(charlist)
+    row4 = charlist
     results = [
                 [{"id": "00", "value": row1[0]}, {"id": "01", "value": row1[1]}, {"id": "02", "value": row1[2]}, {"id": "03", "value": row1[3]}, {"id": "04", "value": row1[4]},{"id": "05", "value": row1[5]},{"id": "06", "value": row1[6]}, {"id": "07", "value": row1[7]}, {"id": "08", "value": row1[8]}, {"id": "09", "value": row1[9]}],
                 [{"id": "10", "value": row2[0]}, {"id": "11", "value": row2[1]}, {"id": "12", "value": row2[2]}, {"id": "13", "value": row2[3]}, {"id": "14", "value": row2[4]},{"id": "15", "value": row2[5]},{"id": "16", "value": row2[6]}, {"id": "17", "value": row2[7]}, {"id": "18", "value": row2[8]}, {"id": "19", "value": row2[9]}],
