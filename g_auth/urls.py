@@ -26,6 +26,7 @@ urlpatterns = [
     path('sign_in/',views.sign_in, name='login'),
     path('emoji/',views.sign_up, name='register'),
     path('DragPIN/',vs.Drag_up, name='Drag_up'),
-    path('DragPIN_in/',vs.Drag_in, name='Drag_in'),
-
+    path('DragPIN_in/',vs.Drag_in, name='Drag_in'),  
+    path('EmojiDrag/',views.sign_upp, name='EmojiDrag'),
+    path('FeedBack/', views.feedback, name='feedback'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

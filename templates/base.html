@@ -29,19 +29,19 @@
         <a class="nav-link" href="https://github.com/mahrous-amer/FYP">Project repo</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{% url "register" %}">emoji-auth!</a>
+        <a class="nav-link" href="{% url "register" %}">Emoji-auth!</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="{% url "Drag_up" %}">DragPIN</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">contact us</a>
+        <a class="nav-link" href="{% url "feedback" %}">Give us Your feedback</a>
       </li>
     </ul>
   </div>
 </nav>
 
-<div class="row"  style="margin:30px;">
+<div class="row content w3-monospace"  style="margin:30px;">
     {% block content %}
     {% endblock %}
 
@@ -54,3 +54,17 @@
 
 </body>
 </html>
+<style>
+  #header{
+    background: url("https://storage.googleapis.com/pr-newsroom-wp/1/2019/07/Moon_header-1440x550.jpg") center center / cover no-repeat;
+  }
+  .content{
+    border-radius: 20px;
+    width: auto;
+    height: auto;
+    background: linear-gradient(35deg, #CCFFFF, #FFCCCC);
+  }
+  body {
+    font-size: 20px;
+  }
+</style>
