@@ -8,23 +8,4 @@
       <button type="submit" class="btn btn-primary btn-block">Sign in</button>
       </form>
     </div>
-
-    <script  type="text/javascript">
-      $('#Sign_in').submit(function(e){
-        // preventing from page reload and default actions
-        e.preventDefault();
-        var serializedData = $(this).serialize();
-
-        $.ajax({
-        url: '{% url "login" %}',
-        type: 'POST',
-        data: {'form': serializedData,},
-        headers: { "X-CSRFToken": '{{csrf_token}}' },
-        success: function(response) {
-          $('#footer').html(response);
-              }
-        });
-
-      });
-    </script>
 {% endblock %}

@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
 <!DOCTYPE html>
+{% csrf_token %}
 <div class="col-sm-12">
+  <h2 style="font-size: 30px; font-family: 'trebuchet ms', verdana, helvetica, arial, sans-serif;">{{Question}}</h2>
   <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist" style="/*! flex: 1; *//*!  */">
     <li class="nav-item" style="width: 50%;">
       <a class="nav-link active" id="pills-DragPIN-Manual-tab" data-toggle="pill" href="#pills-DragPIN-Manual" role="tab" aria-controls="pills-DragPIN-Manual" aria-selected="true">DragPIN-Manual</a>
@@ -15,6 +17,15 @@
 <!-- Drag man -->
     <div class="tab-pane fade show active" id="pills-DragPIN-Manual" role="tabpanel" aria-labelledby="pills-DragPIN-Manual-tab" >
       <div class="table-responsive" id="drag-manual-container">
+        <table class="table table-borderless.table" id="emoji">
+          <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            {% for Emoji in EmojiArray %}
+            <td>
+            <span class="badge badge-light" style="width: 50px;height: 20px; font-size: 20px;  padding: 0;" > {{Emoji}}</span>
+            </td>
+            {% endfor %}
+          <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
+        </table>
           <table class="table table-borderless.table" id="Drag">
           {% for array in results %}
             <tr>
@@ -22,19 +33,19 @@
               {% for content in array %}
               <td id={{content.id}}>
                 {% if content.value == "A" %}
-                  <span class="badge badge-info" style="width: 50px;height: 20px;" value="{{content.value}}"> {{content.value}}</span>
+                  <span class="badge badge-info" style="width: 50px;height: 20px;font-size: 20px;  padding: 0;" value="{{content.value}}"> {{content.value}}</span>
                 {% endif %}
                 {% if content.value == "B" %}
-                  <span class="badge badge-secondary" style="width: 50px;height: 20px;" value="{{content.value}}"> {{content.value}}</span>
+                  <span class="badge badge-secondary" style="width: 50px;height: 20px;font-size: 20px;  padding: 0;" value="{{content.value}}"> {{content.value}}</span>
                 {% endif %}
                 {% if content.value == "C" %}
-                  <span class="badge badge-success" style="width: 50px;height: 20px;" value="{{content.value}}"> {{content.value}}</span>
+                  <span class="badge badge-success" style="width: 50px;height: 20px;font-size: 20px;  padding: 0;" value="{{content.value}}"> {{content.value}}</span>
                 {% endif %}
                 {% if content.value == "D" %}
-                  <span class="badge badge-danger" style="width: 50px;height: 20px;" value="{{content.value}}"> {{content.value}}</span>
+                  <span class="badge badge-danger" style="width: 50px;height: 20px;font-size: 20px;  padding: 0;" value="{{content.value}}"> {{content.value}}</span>
                 {% endif %}
                 {% if content.value == "E" %}
-                  <span class="badge badge-warning" style="width: 50px;height: 20px;" value="{{content.value}}"> {{content.value}}</span>
+                  <span class="badge badge-warning" style="width: 50px;height: 20px;font-size: 20px;  padding: 0;" value="{{content.value}}"> {{content.value}}</span>
                 {% endif %}
               </td>
               {% endfor %}
@@ -42,47 +53,52 @@
             </tr>
           {% endfor %}
         </table>
-        <form method="post" id="dragform">
           {% csrf_token %}
           {{ form.as_p }}
           <button type="submit" class="btn btn-primary btn-block" id="Dragpin-in" >Sign in</button>
-        </form>
       </div>
     </div>
 
 <!-- Drag auto -->
     <div class="tab-pane fade" id="pills-DragPIN-Auto" role="tabpanel" aria-labelledby="pills-DragPIN-Auto-tab">
       <div class="table-responsive" id="drag-auto-container">
+        <table class="table table-borderless.table" id="emoji_auto">
+          <tr>
+            {% for Emoji in EmojiArray %}
+            <td>
+            <span class="badge badge-light" style="width: 50px;height: 20px; font-size: 20px;  padding: 0;" > {{Emoji}}</span>
+            </td>
+            {% endfor %}
+          </tr>
+        </table>
         <table class="table  table-borderless.table" id="Dragauto">
         {% for array in results %}
           <tr class="tablerow thing">
           {% for content in array %}
           <td id="1{{content.id}}">
             {% if content.value == "A" %}
-              <span class="badge badge-info" style="width: 50px;height: 20px;" value="{{content.value}}"> {{content.value}}</span>
+              <span class="badge badge-info" style="width: 50px;height: 20px;font-size: 20px;  padding: 0;" value="{{content.value}}"> {{content.value}}</span>
             {% endif %}
             {% if content.value == "B" %}
-              <span class="badge badge-secondary" style="width: 50px;height: 20px;" value="{{content.value}}"> {{content.value}}</span>
+              <span class="badge badge-secondary" style="width: 50px;height: 20px;font-size: 20px;  padding: 0;" value="{{content.value}}"> {{content.value}}</span>
             {% endif %}
             {% if content.value == "C" %}
-              <span class="badge badge-success" style="width: 50px;height: 20px;" value="{{content.value}}"> {{content.value}}</span>
+              <span class="badge badge-success" style="width: 50px;height: 20px;font-size: 20px;  padding: 0;" value="{{content.value}}"> {{content.value}}</span>
             {% endif %}
             {% if content.value == "D" %}
-              <span class="badge badge-danger" style="width: 50px;height: 20px;" value="{{content.value}}"> {{content.value}}</span>
+              <span class="badge badge-danger" style="width: 50px;height: 20px;font-size: 20px;  padding: 0;" value="{{content.value}}"> {{content.value}}</span>
             {% endif %}
             {% if content.value == "E" %}
-              <span class="badge badge-warning" style="width: 50px;height: 20px;" value="{{content.value}}"> {{content.value}}</span>
+              <span class="badge badge-warning" style="width: 50px;height: 20px;font-size: 20px;  padding: 0;" value="{{content.value}}"> {{content.value}}</span>
             {% endif %}
           </td>
           {% endfor %}
           </tr>
         {% endfor %}
       </table>
-      <form method="post" id="dragautoform">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit" class="btn btn-primary btn-block" id="Dragpin-in" >Sign in</button>
-      </form>
       </div>
     </div>
 
@@ -117,9 +133,9 @@
       });
       // make POST ajax call
       $.ajax({
-      url: '{% url "Drag_in" %}',
+      url: '{% url "EmojiDrag" %}',
       type: 'POST',
-      data: {'form': serializedData, 'result[]': spanArr,},
+      data: {'result[]': spanArr,},
       headers: { "X-CSRFToken": '{{csrf_token}}' },
       success: function(response) {
         $('#footer').html(response);
@@ -128,23 +144,16 @@
     });
 
 // DragPIN auto on spacebar
-
 let spanArr = new Array();
-document.getElementById("pills-DragPIN-Auto-tab").onclick = function() {
-            DragautoFunction()
-          };
-
+document.getElementById("pills-DragPIN-Auto-tab").onclick = function() {DragautoFunction()};
           let Row = 0;
-
           function DragautoFunction() {
             var interval = window.setInterval(function () {
                 // do your thing, do your thing
-
                 var cid =  $("#Dragauto").find('tr').eq(Row).find('td').eq(0).attr('id');
                 $shiftlast = $("#" + cid).clone();
                 $("#" + cid).remove();
                 $("#Dragauto").find('tr').eq(Row).find('td').last().after($shiftlast);
-
             }, 1000);
             document.onkeydown = function(event) {
               if (event.keyCode == "13") {
@@ -170,17 +179,12 @@ document.getElementById("pills-DragPIN-Auto-tab").onclick = function() {
       // preventing from page reload and default actions
       e.preventDefault();
       // serialize the data for sending the form data.
-      var serializedData = $(this).serialize();
       console.log(spanArr);
-      // var spanArr = new Array();
-      // $("#Dragauto").find("span").each(function() {
-      //   spanArr.push($(this).attr('value'));
-      // });
       // make POST ajax call
       $.ajax({
-      url: '{% url "Drag_in" %}',
+      url: '{% url "EmojiDrag" %}',
       type: 'POST',
-      data: {'form': serializedData, 'result[]': spanArr,},
+      data: {'result[]': spanArr,},
       headers: { "X-CSRFToken": '{{csrf_token}}' },
       success: function(response) {
         $('#footer').html(response);
