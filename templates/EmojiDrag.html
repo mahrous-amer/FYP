@@ -53,9 +53,11 @@
             </tr>
           {% endfor %}
         </table>
+        <form method="post" id="dragform">
           {% csrf_token %}
           {{ form.as_p }}
           <button type="submit" class="btn btn-primary btn-block" id="Dragpin-in" >Sign in</button>
+        </form>
       </div>
     </div>
 
@@ -96,10 +98,12 @@
           </tr>
         {% endfor %}
       </table>
+      <form method="post" id="dragautoform">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit" class="btn btn-primary btn-block" id="Dragpin-in" >Sign in</button>
-      </div>
+      </form>
+    </div>
     </div>
 
   </div>
