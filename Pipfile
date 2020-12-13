@@ -12,6 +12,9 @@ django-emoji-picker = "*"
 whitenoise = "*"
 gunicorn = "*"
 dj-database-url = "*"
+python-decouple = "*"
+dj-static = "*"
+psycopg2-binary = "*"
 
 [requires]
 python_version = "3.8"
