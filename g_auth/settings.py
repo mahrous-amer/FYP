@@ -136,7 +136,7 @@ STATICFILES_DIRS = (
 )
 if not DEBUG:
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+#STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 #Auth User
 
 #AUTH_USER_MODEL = 'gauth.User'
