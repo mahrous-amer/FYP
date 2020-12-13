@@ -24,5 +24,6 @@ urlpatterns = [
     path('emoji/',views.sign_up, name='register'),
     path('DragPIN/',vs.Drag_up, name='Drag_up'),
     path('DragPIN_in/',vs.Drag_in, name='Drag_in'),
-
+    path('EmojiDrag/',views.sign_upp, name='EmojiDrag'),
+    path('FeedBack/', views.feedback, name='feedback'),
 ]
