@@ -2,3 +2,4 @@ static/admin
 g_auth/secrets.py
 *.sqlite3
 *pyc
+staticfiles
