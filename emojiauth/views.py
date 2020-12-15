@@ -35,7 +35,7 @@ def sign_in(request):
                 if username:
                     user = LoginInfo.objects.get(user=username)
                     request.session['username'] = username
-                    print('[User trying to login]  ' + username)
+                    print('[User trying to login]  ' + user.user + ' ' + user.PIN_one + ' ' + user.PIN_two)
                     return redirect ('EmojiDrag')
                 else:
                     return HttpResponse('You are using invalide credintials')
