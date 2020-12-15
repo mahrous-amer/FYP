@@ -17,12 +17,12 @@ class LoginInfo(models.Model):
     #   Question 1
     Question_one     = models.CharField(max_length=50)
     EmojiStr_one     = models.TextField(max_length=100)
-    EmojiArray_one   = models.CharField(max_length=20)
+    EmojiArray_one   = models.CharField(max_length=50)
     PIN_one          = models.CharField(max_length=4)
     #   Question 2
     Question_two     = models.CharField(max_length=50)
     EmojiStr_two     = models.TextField(max_length=100)
-    EmojiArray_two   = models.CharField(max_length=20)
+    EmojiArray_two   = models.CharField(max_length=50)
     PIN_two          = models.CharField(max_length=4)
 
 
