@@ -3,6 +3,7 @@ import emoji
 import random
 from .models import LoginInfo
 from .forms import SignUpForm, LoginForm
+from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
 
 def home(request):
@@ -26,6 +27,7 @@ def sign_up (request):
     return render(request, 'sign_up.html', {'form': form})
 
 pinarr = None
+@csrf_exempt
 def sign_in(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
@@ -45,6 +47,7 @@ def sign_in(request):
         form = LoginForm()
     return render(request, 'sign_in.html', {'form': form})
 
+@csrf_exempt
 def sign_upp (request):
     results = []
     for i in range(4):
