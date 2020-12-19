@@ -74,6 +74,12 @@ class LoginInfo(models.Model):
         options = [1, 2]
         random.shuffle(options)
         if options[0] == 1:
-            return self.Question_one, self.PIN_one, self.EmojiArray_one
+            return self.Question_one, self.PIN_one, self.EmojiArray_one, options[0]
         if options[0] == 2:
+            return self.Question_two, self.PIN_two, self.EmojiArray_two, options[0]
+
+    def GetAnEmojiArray(self, Question):
+        if Question == 1:
+            return self.Question_one, self.PIN_one, self.EmojiArray_one
+        if Question == 2:
             return self.Question_two, self.PIN_two, self.EmojiArray_two

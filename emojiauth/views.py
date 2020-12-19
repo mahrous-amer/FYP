@@ -56,24 +56,30 @@ def sign_upp (request):
         results.append(line)
     username = request.session.get('username')
     user = LoginInfo.objects.get(user=username)
-    Question, pin, EmojiArray = user.GetEmojiArray()
+    Question, pin, EmojiArray, option = user.GetEmojiArray()
+    request.session['option'] = option
+
     EmojiArray = EmojiArray.translate({ord(i): None for i in "[',] "})
     Emojiarray = []
     for x in EmojiArray:
         Emojiarray.append(x)
-    arr = request.POST.getlist('result[]')
+    return render(request, 'EmojiDrag.html', {'results': results, 'EmojiArray': Emojiarray, 'Question': Question})
+
+def validate(request):
     if request.method == 'POST':
         """ process user login"""
-        try:
-            if arr[int(pin[0])] == arr[10+int(pin[1])] == arr[20+int(pin[2])] == arr[30+int(pin[3])]:
-                name = str(username) +" has been successfully signed in!"
-                print('[User login successfully]  ' + user.user + ' ' + user.PIN_one + ' ' + user.PIN_two)
-                return HttpResponse(name)
-            else:
-                return HttpResponse('DragPIN used is incorect')
-        except LoginInfo.DoesNotExist:
+        username = request.session.get('username')
+        user = LoginInfo.objects.get(user=username)
+        option = request.session.get('option')
+        Question, pin, EmojiArray = user.GetAnEmojiArray(Question = option)
+        arr = request.POST.getlist('result[]')
+
+        if arr[int(pin[0])] == arr[10+int(pin[1])] == arr[20+int(pin[2])] == arr[30+int(pin[3])]:
+            name = str(username) +" has been successfully signed in!"
+            print('[User login successfully]  ' + user.user + ' ' + user.PIN_one + ' ' + user.PIN_two)
+            return HttpResponse(name)
+        else:
             return HttpResponse('DragPIN used is incorect')
-    return render(request, 'EmojiDrag.html', {'results': results, 'EmojiArray': Emojiarray, 'Question': Question})
 
 def feedback(request):
     return render(request, 'feedback.html')
