@@ -197,6 +197,9 @@ document.getElementById("pills-DragPIN-Auto-tab").onclick = function() {Dragauto
             }, 1000);
             document.onkeydown = function(event) {
               if (event.keyCode == "13") {
+                if (Row == 4){
+                  return;
+                }
                 console.log("Enter key pressed");
                 window.clearInterval(interval);
                 if (Row < sel){
@@ -207,6 +210,9 @@ document.getElementById("pills-DragPIN-Auto-tab").onclick = function() {Dragauto
                 console.log("R = "+ Row.toString())
               }
               if (event.keyCode == "32") {
+                if (sel > 4){
+                  return;
+                }
                 if (sel > Row){
                   console.log("sel::::: " + sel.toString());
                   console.log("spanarr befor [slice] " + spanarr.toString());
