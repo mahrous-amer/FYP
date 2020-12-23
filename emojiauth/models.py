@@ -13,7 +13,7 @@ class LoginInfo(models.Model):
     fails            = models.PositiveSmallIntegerField(default=0)
     login_link       = models.CharField(unique=True, blank=True, null=True, max_length=225)
     reset_link       = models.CharField(unique=True, blank=True, null=True, max_length=225)
-
+    passes           = models.PositiveSmallIntegerField(default=0)
     #   Question 1
     Question_one     = models.CharField(max_length=50)
     EmojiStr_one     = models.TextField(max_length=100)

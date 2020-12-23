@@ -76,9 +76,13 @@ def validate(request):
 
         if arr[int(pin[0])] == arr[10+int(pin[1])] == arr[20+int(pin[2])] == arr[30+int(pin[3])]:
             name = str(username) +" has been successfully signed in!"
-            print('[User login successfully]  ' + user.user + ' ' + user.PIN_one + ' ' + user.PIN_two)
+            user.passes = user.passes + 1
+            user.save()
+            print('[User login successfully]  ' + user.user + ' ' + user.PIN_one + ' ' + user.PIN_two + ' Fails: ' + str(user.fails) + ' Passes: ' + str(user.passes) )
             return HttpResponse(name)
         else:
+            user.fails = user.fails + 1
+            user.save()
             return HttpResponse('DragPIN used is incorect')
 
 def feedback(request):
