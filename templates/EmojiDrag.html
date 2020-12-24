@@ -197,6 +197,7 @@ document.getElementById("pills-DragPIN-Auto-tab").onclick = function() {Dragauto
             }, 1000);
             document.onkeydown = function(event) {
               if (event.keyCode == "13") {
+                event.preventDefault();
                 if (Row == 4){
                   return;
                 }
@@ -207,22 +208,18 @@ document.getElementById("pills-DragPIN-Auto-tab").onclick = function() {Dragauto
                 }else {
                   console.log("Ignore Enter");
                 }
-                console.log("R = "+ Row.toString())
               }
               if (event.keyCode == "32") {
+                event.preventDefault();
                 if (sel > 4){
                   return;
                 }
                 if (sel > Row){
-                  console.log("sel::::: " + sel.toString());
-                  console.log("spanarr befor [slice] " + spanarr.toString());
                   spanarr.splice((sel-1)*10, 10);
-                  console.log("spanarr after [slice] " + spanarr.toString());
-
                 }else {
                   sel = sel + 1;
                 }
-                console.log("Space key pressed sel = " + sel.toString());
+                console.log("Space key pressed");
                 // store entry
                 var Arr = new Array();
                 $("#Dragauto").find('tr').eq(Row).find("span").each(function() {

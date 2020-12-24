@@ -15,6 +15,15 @@
 <!-- Drag man -->
     <div class="tab-pane fade show active" id="pills-DragPIN-Manual" role="tabpanel" aria-labelledby="pills-DragPIN-Manual-tab" >
       <div class="table-responsive" id="drag-manual-container">
+        <table class="table table-borderless.table" id="draghead">
+          <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            {% for head in rowheaders %}
+            <td>
+            <span class="badge badge-light" style="width: 50px;height: 20px; font-size: 20px;  padding: 0;" > {{head}}</span>
+            </td>
+            {% endfor %}
+          <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
+        </table>
           <table class="table table-borderless.table" id="Drag">
           {% for array in results %}
             <tr>
@@ -53,6 +62,15 @@
 <!-- Drag auto -->
     <div class="tab-pane fade" id="pills-DragPIN-Auto" role="tabpanel" aria-labelledby="pills-DragPIN-Auto-tab">
       <div class="table-responsive" id="drag-auto-container">
+        <table class="table table-borderless.table" id="dragautohead">
+          <tr>
+            {% for head in rowheaders %}
+            <td>
+            <span class="badge badge-light" style="width: 50px;height: 20px; font-size: 20px;  padding: 0;" > {{head}}</span>
+            </td>
+            {% endfor %}
+          </tr>
+        </table>
         <table class="table  table-borderless.table" id="Dragauto">
         {% for array in results %}
           <tr class="tablerow thing">
@@ -91,7 +109,40 @@
 </div>
 
 <script type="text/javascript">
+
+function StopWatch() {
+  var startTime = null;
+  var stopTime = null;
+  var running = false;
+
+function getTime() {
+    var day = new Date();
+    return day.getTime();
+  }
+this.start = function() {
+    if (running == true)
+      return;
+    else if (startTime != null)
+      stopTime = null;
+    running = true;
+    startTime = getTime();
+  }
+this.stop = function() {
+    if (running == false)
+      return;
+    stopTime = getTime();
+    running = false;
+  }
+this.duration = function() {
+    if (startTime == null || stopTime == null)
+      return 'Undefined';
+    else
+      return (stopTime - startTime) / 1000;
+  }
+}
   $(document).ready(function() {
+    var _StopWatch = new StopWatch();
+    _StopWatch.start();
     $("button").on("click", function() {
       if ($(this).attr("value") == '◀️') {
         var fid = $(this).closest('tr').find('td:eq(1)').attr('id');
@@ -125,46 +176,58 @@
         $('#footer').html(response);
             }
       });
+      _StopWatch.stop();
+      alert(_StopWatch.duration());
     });
 
 // DragPIN auto on spacebar
 
 let spanArr = new Array();
-document.getElementById("pills-DragPIN-Auto-tab").onclick = function() {
-            DragautoFunction()
-          };
-
-          let Row = 0;
-
-          function DragautoFunction() {
-            var interval = window.setInterval(function () {
-                // do your thing, do your thing
-
-                var cid =  $("#Dragauto").find('tr').eq(Row).find('td').eq(0).attr('id');
-                $shiftlast = $("#" + cid).clone();
-                $("#" + cid).remove();
-                $("#Dragauto").find('tr').eq(Row).find('td').last().after($shiftlast);
-
-            }, 1000);
-            document.onkeydown = function(event) {
-              if (event.keyCode == "13") {
-                console.log("Enter key pressed");
-                window.clearInterval(interval);
-                Row = Row + 1;
-              }
-              if (event.keyCode == "32") {
-                console.log("Space key pressed");
-                // store entry
-                var Arr = new Array();
-                $("#Dragauto").find('tr').eq(Row).find("span").each(function() {
-                  Arr.push($(this).attr('value'));
-                });
-                console.log(Arr);
-                spanArr = spanArr.concat(Arr);
-              }
-            };
-          };
-
+document.getElementById("pills-DragPIN-Auto-tab").onclick = function() {DragautoFunction()};
+  let Row = 0;
+  let sel = 0;
+  function DragautoFunction() {
+    var interval = window.setInterval(function () {
+        // do your thing, do your thing
+        var cid =  $("#Dragauto").find('tr').eq(Row).find('td').eq(0).attr('id');
+        $shiftlast = $("#" + cid).clone();
+        $("#" + cid).remove();
+        $("#Dragauto").find('tr').eq(Row).find('td').last().after($shiftlast);
+    }, 1000);
+    document.onkeydown = function(event) {
+      if (event.keyCode == "13") {
+        event.preventDefault();
+        if (Row == 4){
+          return;
+        }
+        console.log("Enter key pressed");
+        window.clearInterval(interval);
+        if (Row < sel){
+          Row = Row + 1;
+        }else {
+          console.log("Ignore Enter");
+        }
+      }
+      if (event.keyCode == "32") {
+        event.preventDefault();
+        if (sel > 4){
+          return;
+        }
+        if (sel > Row){
+          spanArr.splice((sel-1)*10, 10);
+        }else {
+          sel = sel + 1;
+        }
+        console.log("Space key pressed");
+        // store entry
+        var Arr = new Array();
+        $("#Dragauto").find('tr').eq(Row).find("span").each(function() {
+          Arr.push($(this).attr('value'));
+        });
+        spanArr = spanArr.concat(Arr);
+      }
+    };
+  };
 
     $('#dragautoform').submit(function(e){
       // preventing from page reload and default actions
@@ -172,10 +235,6 @@ document.getElementById("pills-DragPIN-Auto-tab").onclick = function() {
       // serialize the data for sending the form data.
       var serializedData = $(this).serialize();
       console.log(spanArr);
-      // var spanArr = new Array();
-      // $("#Dragauto").find("span").each(function() {
-      //   spanArr.push($(this).attr('value'));
-      // });
       // make POST ajax call
       $.ajax({
       url: '{% url "Drag_in" %}',
@@ -186,7 +245,10 @@ document.getElementById("pills-DragPIN-Auto-tab").onclick = function() {
         $('#footer').html(response);
       }
       });
+      _StopWatch.stop();
+      alert(_StopWatch.duration());
     });
+
 });
 </script>
 {% endblock %}

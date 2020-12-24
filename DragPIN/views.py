@@ -13,6 +13,7 @@ def Drag_up (request):
             Profile = form.save()
             Profile.refresh_from_db()  # load the instance created by the signal
             Profile.save()
+            print("[DragUser Registerd !!]")
             return redirect ('Drag_in')
     else:
         form = Profileform()
@@ -27,7 +28,7 @@ def Drag_in(request):
         for j in range(10):
             line.append({"id": str(i)+str(j), "value": row[j]})
         results.append(line)
-    print(results)
+    rowheaders = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
     # "Cleaner code = Slower code <in this case>"
     # credits @ Dr.MahrousAmer ^
     # Bad way >>>
@@ -68,7 +69,6 @@ def Drag_in(request):
                 pin = getattr(draguser, Profile_object.attname)
                 print(DragId)
                 print(pin)
-                print(arr)
                 #Profile_object = Profile._meta.get_field('Identifier')
                 #identifier = getattr(draguser, Profile_object.attname)
                 #extras are not allways good
@@ -87,8 +87,13 @@ def Drag_in(request):
                 # print( arr[int(pin[0])], arr[int(pin[1])], arr[int(pin[2])], arr[int(pin[3])] )
                 # #if one == True and two == True and three == True and four == True:
                 if arr[int(pin[0])] == arr[10+int(pin[1])] == arr[20+int(pin[2])] == arr[30+int(pin[3])]:
+                    draguser.passes = draguser.passes + 1
+                    draguser.save()
+                    print('[DragUser login successfully]  ' + draguser.DragID + ' ' + draguser.PIN + ' Fails: ' + str(draguser.fails) + ' Passes: ' + str(draguser.passes) )
                     return HttpResponse('User has been successfully signed in!')
                 else:
+                    draguser.fails = draguser.fails + 1
+                    draguser.save()
                     return HttpResponse('Dragid or DragPIN used is incorect')
             except Profile.DoesNotExist:
                 return HttpResponse('Dragid or DragPIN used is incorect')
@@ -96,4 +101,4 @@ def Drag_in(request):
         #return HttpResponse('User has been successfully signed in!')
     else:
         form = Drag()
-    return render(request, 'DragPIN_sign_in.html', {'form': form, 'results': results,})
+    return render(request, 'DragPIN_sign_in.html', {'form': form, 'results': results, 'rowheaders':rowheaders})
