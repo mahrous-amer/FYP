@@ -206,7 +206,6 @@ document.getElementById("pills-DragPIN-Auto-tab").onclick = function() {Dragauto
         }else {
           console.log("Ignore Enter");
         }
-        event.preventDefault();
       }
       if (event.keyCode == "32") {
         if (sel > 4){
@@ -224,7 +223,6 @@ document.getElementById("pills-DragPIN-Auto-tab").onclick = function() {Dragauto
           Arr.push($(this).attr('value'));
         });
         spanArr = spanArr.concat(Arr);
-        event.preventDefault();
       }
     };
   };
