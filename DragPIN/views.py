@@ -13,7 +13,7 @@ def Drag_up (request):
             Profile = form.save()
             Profile.refresh_from_db()  # load the instance created by the signal
             Profile.save()
-            print("[DragUser Registerd !!]")
+            print("[DragUser Registered !!]")
             return redirect ('Drag_in')
     else:
         form = Profileform()

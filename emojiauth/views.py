@@ -38,9 +38,9 @@ def sign_in(request):
                     print('[User trying to login]  ' + user.user + ' ' + user.PIN_one + ' ' + user.PIN_two)
                     return redirect ('EmojiDrag')
                 else:
-                    return HttpResponse('You are using invalide credintials')
+                    return HttpResponse('You are using invalide credentials')
             except LoginInfo.DoesNotExist:
-                return HttpResponse('You are using invalide credintials')
+                return HttpResponse('You are using invalide credentials')
     else:
         form = LoginForm()
     return render(request, 'sign_in.html', {'form': form})
@@ -83,7 +83,7 @@ def validate(request):
         else:
             user.fails = user.fails + 1
             user.save()
-            return HttpResponse('DragPIN used is incorect')
+            return HttpResponse('DragPIN used is incorrect')
 
 def feedback(request):
     return render(request, 'feedback.html')
